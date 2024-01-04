@@ -1,11 +1,11 @@
 const { Bicycle } = require("../models/bicycleModel");
-
 const { HttpError, ctrlWrapper } = require("../helpers");
+const  STATUSES  = require("../constants");
+
 
 const getAllBicycles = async (req, res, next) => {
   
   const result = await Bicycle.find();
-  console.log("🚀 ~ getAllBicycles ~ result:", result);
   res.status(200).json(result);
 };
 
@@ -44,11 +44,34 @@ const updateStatusBicycle = async (req, res, next) => {
   res.status(200).json(result);
 };
 
+const getAllStats = async (req, res, next) => {
+   
+  const result = await Bicycle.find();
+  const total = result.length;
+  const available = result.filter(
+    (item) => item.status === STATUSES.AVAILABLE
+  ).length;
+  const booked = result.filter((item) => item.status === STATUSES.BUSY).length;
+  let averagePrice = 0;
+  if (total > 0) {
+    const grandTotal = result.reduce(
+      (acc, bicycle) => (acc += bicycle.price),
+      0
+    );
+    averagePrice = Number((grandTotal / total).toFixed(2));
+  }
+  res.status(200).json({ total, available, booked, averagePrice });
+  if (!result) {
+    throw HttpError(404, "Not found");
+  }
+  res.json(result);
+};
+
 module.exports = {
   getAllBicycles: ctrlWrapper(getAllBicycles),
   getBicycleById: ctrlWrapper(getBicycleById),
   addBicycle: ctrlWrapper(addBicycle),
   deleteBicycleById: ctrlWrapper(deleteBicycleById),
-
   updateStatusBicycle: ctrlWrapper(updateStatusBicycle),
+  getAllStats: ctrlWrapper(getAllStats),
 };

@@ -4,6 +4,7 @@ const cors = require('cors')
 const dotenv=require('dotenv')
 
 const bicyclesRouter = require("./routes/api/bicycles");
+const statsRouter = require("./routes/api/stats");
 
 
 
@@ -19,6 +20,7 @@ app.use(express.static("public"))
 
 
 app.use("/api/bicycles", bicyclesRouter);
+app.use("/api/stats", statsRouter);
 
 app.use((err, req, res, next) => {
   const { status = 500, message = "Server error" } = err;

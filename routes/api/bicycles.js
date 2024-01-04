@@ -25,4 +25,6 @@ router.patch(
   ctrl.updateStatusBicycle
 );
 
+router.get("/stats", ctrl.getAllStats);
+
 module.exports = router;
