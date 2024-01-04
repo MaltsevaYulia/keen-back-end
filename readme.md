@@ -1,17 +1,26 @@
 ## BackEnd for Keenethics
 
-Виконайте форк цього репозиторію 
+This is a  server part fore REST-api based application for performing CRUD opeartions on database for a company that provides bicycle booking services
 
-### Встановлення залежностей
-- `npm i` 
+Read more about client side https://github.com/MaltsevaYulia/keen-front-end
 
-### Додйте необхідні ключі до .env:
-MONGO_URL=
-PORT=
+Fork this repository
 
-### Команди:
+## Stack
 
-- `npm start` &mdash; старт сервера в режимі production
-- `npm run start:dev` &mdash; старт сервера в режимі розробки (development)
-- `npm run lint` &mdash; запустити виконання перевірки коду з eslint, необхідно виконувати перед кожним PR та виправляти всі помилки лінтера
-- `npm lint:fix` &mdash; та ж перевірка лінтера, але з автоматичними виправленнями простих помилок
+- *Back-end*: Node.js / Express / Mongoose
+- *Database*: MongoDB
+
+### Installation of dependencies
+- `npm i`
+
+### Add the necessary keys to the .env:
+- MONGO_URL=
+- PORT=
+
+### Available Scripts:
+
+- `npm start` &mdash; server start in production mode
+- `npm run start:dev` &mdash; start the server in development mode
+- `npm run lint` &mdash; run a code check run with eslint, must run before each PR and fix all linter errors
+- `npm lint:fix` &mdash; the same linter check, but with automatic fixes for simple errors
